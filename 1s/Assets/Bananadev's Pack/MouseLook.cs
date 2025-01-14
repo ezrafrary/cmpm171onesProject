@@ -8,6 +8,10 @@ public class MouseLook : MonoBehaviour
     public Vector2 clampInDegrees = new Vector2(360, 180);
     public bool lockCursor = true;
     [Space]
+
+    public float sensX = 2;
+    public float sensY = 2;
+
     private Vector2 sensitivity = new Vector2(2, 2);
     [Space]
     public Vector2 smoothing = new Vector2(3, 3);
@@ -28,6 +32,7 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
+
         instance = this;
 
         // Set target direction to the camera's initial orientation.
@@ -40,6 +45,12 @@ public class MouseLook : MonoBehaviour
         if (lockCursor)
             LockCursor();
 
+    }
+
+
+
+    public void setSensitivity(float _sensX, float _sensY){
+        sensitivity = new Vector2(_sensX, _sensY);
     }
 
     public void LockCursor()

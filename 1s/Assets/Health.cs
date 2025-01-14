@@ -5,6 +5,8 @@ using Photon.Pun;
 using TMPro;
 
 
+//WARNING: if you call TakeDamage() on a trigger field (say with OnTriggerEnter()) it may get called twice, use special handling.
+
 public class Health : MonoBehaviour
 {
     public int health;
@@ -23,8 +25,19 @@ public class Health : MonoBehaviour
             if(IsLocalPlayer){
                 
                 RoomManager.instance.SpawnPlayer();
+                RoomManager.instance.deaths++;
+                RoomManager.instance.SetHashes();
+
             }
             Destroy(gameObject);
         }
+    }
+
+    [PunRPC]
+    public void KillPlayer(){
+        if (health > 0){ //This seems pointless, but if you use OnTriggerEnter as a damage field, it gets called twice in one frame, duplicating a client 
+            TakeDamage(health);
+        }
+
     }
 }

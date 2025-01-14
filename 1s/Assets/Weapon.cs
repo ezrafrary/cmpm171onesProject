@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using System;
+using Photon.Pun.UtilityScripts;
 
 public class Weapon : MonoBehaviour
 {
@@ -50,6 +52,7 @@ public class Weapon : MonoBehaviour
     private float recoilLength;
     private float recoverLength;
 
+
     void Start(){
         magText.text = mag.ToString();
         ammoText.text = ammo + "/" + magAmmo;
@@ -68,8 +71,8 @@ public class Weapon : MonoBehaviour
             nextFire = 1 / fireRate;
             ammo--;
             
-            magText.text = mag.ToString();
-            ammoText.text = ammo + "/" + magAmmo;
+            SetGunText();
+
             Fire();
         }
 
@@ -85,6 +88,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public void SetGunText(){
+        magText.text = mag.ToString();
+        ammoText.text = ammo + "/" + magAmmo;
+    }
+
     void Reload(){
         animation.Play(reload.name);
 
@@ -92,8 +100,7 @@ public class Weapon : MonoBehaviour
             mag--;
             ammo = magAmmo;
         }
-        magText.text = mag.ToString();
-        ammoText.text = ammo + "/" + magAmmo;
+        SetGunText();
     }
 
     void Fire(){
@@ -106,6 +113,14 @@ public class Weapon : MonoBehaviour
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
 
             if (hit.transform.gameObject.GetComponent<Health>()){
+                //PhotonNetwork.LocalPlayer.AddScore(damage); add score for damage
+                if (damage >= hit.transform.gameObject.GetComponent<Health>().health){
+                    //kill
+
+                    RoomManager.instance.kills++;
+                    RoomManager.instance.SetHashes();
+                    PhotonNetwork.LocalPlayer.AddScore(1);
+                }
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
             }
         }
