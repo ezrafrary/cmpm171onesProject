@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [HideInInspector]
     public float playerSensY = 2;
 
-
+    public string roomNameToJoin = "test";
     
 
     void Awake(){
@@ -50,33 +50,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void JoinRoomButtonPressed(){
         Debug.Log("Connecting");
 
-        PhotonNetwork.ConnectUsingSettings();
+        
+        PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
+
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public override void OnConnectedToMaster(){
-        base.OnConnectedToMaster();
-
-        Debug.Log("Connected to Server");
-
-        PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby(){
-        base.OnJoinedLobby();
-
-        Debug.Log("We're in the lobby now");
-
-        PhotonNetwork.JoinOrCreateRoom("test", null, null);
-
-    }
+   
 
 
     public override void OnJoinedRoom(){

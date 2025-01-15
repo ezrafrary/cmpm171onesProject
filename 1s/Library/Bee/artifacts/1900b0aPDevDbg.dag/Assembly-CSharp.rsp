@@ -345,6 +345,8 @@
 "Assets/Photon/PhotonChat/Demos/DemoChat/NamePickGui.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
 "Assets/PlayerSetup.cs"
+"Assets/RoomItemButton.cs"
+"Assets/RoomList.cs"
 "Assets/RoomManager.cs"
 "Assets/Sway.cs"
 "Assets/switchMenus.cs"
