@@ -380,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 1527315264600204419}
   camera: {fileID: 5196116870572842970}
+  cameraObj: {fileID: 1226191117682152934}
   nickname: 
   nicknameText: {fileID: 4018755466682300657}
 --- !u!135 &3724272249194503129

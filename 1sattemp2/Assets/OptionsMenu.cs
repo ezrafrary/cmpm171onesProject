@@ -9,6 +9,8 @@ public class OptionsMenu : MonoBehaviour
     public Slider sensSlider;
     public TMP_InputField sensInputField;
     public GameObject roomManager;
+    public TMP_InputField fovInputField;
+    public Slider fovSlider;
 
 
 
@@ -16,7 +18,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void sensSliderChanged(){
         sensInputField.text = sensSlider.value.ToString();
-        roomManager.GetComponent<RoomManager>().changeSens(sensSlider.value, sensSlider.value);
+        roomManager.GetComponent<RoomManager>().changeSens(sensSlider.value, sensSlider.value); //xsens and ysens are the same
     }
 
     public void sensInputFieldChanged(){
@@ -28,7 +30,17 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
-    public void setSensitivity(){
+    public void fovSliderChanged(){
+        fovInputField.text = fovSlider.value.ToString();
+        roomManager.GetComponent<RoomManager>().changeFov((int)fovSlider.value);
+    }
 
+    public void fovinputFieldChanged(){
+        try{
+            fovSlider.value = float.Parse(fovInputField.text);
+        }catch{
+            fovInputField.text = "";
+            fovSlider.value = 60f;
+        }
     }
 }
