@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 {
 
     public Image ammoCircle;
+    public Image reloadCircle;
 
     public int damage;
 
@@ -55,14 +56,18 @@ public class Weapon : MonoBehaviour
     private bool recovering;
     private float recoilLength;
     private float recoverLength;
-
+    private float reloadMaxTime;
 
     public void setAmmoCircle(){
         ammoCircle.fillAmount = (float) ammo / magAmmo;
     }
+    public void SetReloadCircle(){
+        reloadCircle.fillAmount = animation["reload"].time/reloadMaxTime;
+    }
 
 
     void Start(){
+        reloadMaxTime = reload.length;
         magText.text = mag.ToString();
         ammoText.text = ammo + "/" + magAmmo;
         setAmmoCircle();
@@ -73,6 +78,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        SetReloadCircle();
         if (nextFire > 0){
             nextFire -= Time.deltaTime;
         }
@@ -112,6 +118,14 @@ public class Weapon : MonoBehaviour
             ammo = magAmmo;
         }
         SetGunText();
+    }
+
+    public bool IsReloading(){
+        //Debug.Log("isreloading called");
+        if (animation.isPlaying){
+            return true;
+        }
+        return false;
     }
 
     void Fire(){

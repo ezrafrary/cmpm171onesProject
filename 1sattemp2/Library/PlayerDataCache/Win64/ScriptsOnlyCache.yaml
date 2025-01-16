@@ -42,6 +42,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
@@ -158,9 +160,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: RoomList
     methodName: ChangeRoomToCreateName
-  - assembly: Assembly-CSharp
-    fullTypeName: MainMenu
-    methodName: PlayButtonClicked
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive
@@ -570,7 +569,7 @@ ScriptsOnlyBuild:
     className: killZone
   - hash:
       serializedVersion: 2
-      Hash: f8bf6208b5a45d26123c597e29e8b78e
+      Hash: 6c10fd515f7f0e02fb78fa4d4af7ffea
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Weapon
