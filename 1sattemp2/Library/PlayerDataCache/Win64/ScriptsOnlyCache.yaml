@@ -161,6 +161,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: RoomList
     methodName: ChangeRoomToCreateName
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: loadSettingsButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: saveSettingsButtonPressed
   - assembly: UnityEngine.CoreModule
     fullTypeName: UnityEngine.GameObject
     methodName: SetActive

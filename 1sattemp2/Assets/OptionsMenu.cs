@@ -12,9 +12,15 @@ public class OptionsMenu : MonoBehaviour
     public TMP_InputField fovInputField;
     public Slider fovSlider;
 
+    private float defaultSens = 2f;
+    private float defaultFov = 60;
 
 
     //it is awkward to change settings on player, go from OptionsMenu.cs -> RoomManager.cs -> PlayerSetup.cs -> MouseLook.cs
+
+    void Start(){
+        loadSettings();
+    }
 
     public void sensSliderChanged(){
         sensInputField.text = sensSlider.value.ToString();
@@ -26,7 +32,7 @@ public class OptionsMenu : MonoBehaviour
             sensSlider.value = float.Parse(sensInputField.text);
         }catch{
             sensInputField.text = "";
-            sensSlider.value = 2f;
+            sensSlider.value = defaultSens;
         }
     }
 
@@ -40,7 +46,27 @@ public class OptionsMenu : MonoBehaviour
             fovSlider.value = float.Parse(fovInputField.text);
         }catch{
             fovInputField.text = "";
-            fovSlider.value = 60f;
+            fovSlider.value = defaultFov;
         }
+    }
+
+
+    public void saveSettings(){
+        PlayerPrefs.SetFloat("SensXY", sensSlider.value);
+        PlayerPrefs.SetInt("FOV", (int)fovSlider.value);
+    }
+    
+    public void loadSettings(){
+        sensSlider.value = PlayerPrefs.GetFloat("SensXY", defaultSens);
+        fovSlider.value = PlayerPrefs.GetInt("FOV", (int)defaultFov);
+    }
+
+
+    public void saveSettingsButtonPressed(){
+        saveSettings();
+    }
+
+    public void loadSettingsButtonPressed(){
+        loadSettings();
     }
 }
