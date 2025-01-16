@@ -6,7 +6,11 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject RoomManagerObject;
     public GameObject mainMenuObject;
+    public OptionsMenu optionsMenuObj;
 
+    void Start(){
+        optionsMenuObj.loadSettings();
+    }
 
     public void PlayButtonClicked(){
         RoomManagerObject.SetActive(true);
