@@ -42,6 +42,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
@@ -2169,7 +2171,7 @@ ScriptsOnlyBuild:
     className: UnityOnParticleCollisionMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 55fb7212b432cabdf1cf1b024b667afb
+      Hash: 71a84c3ece527b36f9638d7de7520a31
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: WeaponSwitcher
@@ -2373,7 +2375,7 @@ ScriptsOnlyBuild:
     className: CameraWork
   - hash:
       serializedVersion: 2
-      Hash: caae02946b71247e3d969ac2eedb03db
+      Hash: c1ac9ebcd7c8d28fe82a3cc8d53ec255
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerSetup

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class WeaponSwitcher : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class WeaponSwitcher : MonoBehaviour
     private int selectedWeapon = 0;
 
     private bool lockWeaponSwitch = false;
+
+    public PhotonView playerSetupView;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +79,9 @@ public class WeaponSwitcher : MonoBehaviour
     }
 
     void SelectWeapon(){
+
+        playerSetupView.RPC("SetTPWeapon", RpcTarget.All, selectedWeapon);
+
         if (selectedWeapon >= transform.childCount){
             selectedWeapon = transform.childCount - 1;
         }
