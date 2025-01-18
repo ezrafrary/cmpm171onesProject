@@ -325,6 +325,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.52f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/BackToMenuButton.cs"
 "Assets/Bananadev's Pack/MouseLook.cs"
+"Assets/bullet.cs"
 "Assets/FaceObjectToCamera.cs"
 "Assets/Health.cs"
 "Assets/killZone.cs"

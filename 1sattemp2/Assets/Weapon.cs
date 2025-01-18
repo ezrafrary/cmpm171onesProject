@@ -47,6 +47,12 @@ public class Weapon : MonoBehaviour
     public float recoilUp = 1f;
     public float recoilBack = 0;
 
+    [Header("projectile settings")]
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
+    public float bulletSpeed = 4f;
+    public GameObject playerObjForIgnoreHitbox;
+
 
 
     private Vector3 originalPosition;
@@ -83,7 +89,7 @@ public class Weapon : MonoBehaviour
             nextFire -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false){
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && !bulletPrefab){
             nextFire = 1 / fireRate;
             ammo--;
             
@@ -91,6 +97,17 @@ public class Weapon : MonoBehaviour
 
             Fire();
         }
+
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && bulletPrefab){
+            nextFire = 1 / fireRate;
+            ammo--;
+            
+            SetGunText();
+
+            FireProjectile();
+        }
+        
+
 
         if (Input.GetKeyDown(KeyCode.R) && animation.isPlaying == false && mag > 0 && magAmmo > ammo){
             Reload();
@@ -128,6 +145,7 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
+
     void Fire(){
         recoiling = true;
         recovering = false;
@@ -149,6 +167,28 @@ public class Weapon : MonoBehaviour
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
             }
         }
+    }
+
+    void FireProjectile(){
+        recoiling = true;
+        recovering = false;
+        if(bulletPrefab){
+            spawnBullet();
+
+        }else{
+            Debug.Log("no bullet prefab");
+        }
+    }
+
+
+    void spawnBullet(){
+        var bullet = PhotonNetwork.Instantiate(bulletPrefab.name, bulletSpawnPoint.position, Camera.main.transform.rotation * bulletPrefab.transform.rotation);
+        
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+
+        Bullet bulletSctipt = bullet.GetComponent<Bullet>();
+        bulletSctipt.setIgnoreHitbox(playerObjForIgnoreHitbox);
+        
     }
 
     void Recoil(){
