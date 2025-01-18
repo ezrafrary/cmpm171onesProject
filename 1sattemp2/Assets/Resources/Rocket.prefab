@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 4237960023521722542}
   - component: {fileID: 8634063939154730760}
   - component: {fileID: 671066755219633998}
-  - component: {fileID: -3311950245600417814}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -102,8 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9a6e0b108ba9244aa850fa9644cf98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 70
+  damage: 10
+  explosiveDamage: 20
+  explosiveRadius: 2
   ignoreHitbox: {fileID: 0}
+  hitVFX: {fileID: 374084849934840222, guid: 497432ca0b179924eae6f4a20096cb1c, type: 3}
 --- !u!54 &8712635185112596516
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,17 +211,3 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 4e5ce0b6f97fdbc40b7bc818b06b80ba, type: 3}
---- !u!114 &-3311950245600417814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7866606936160352011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d5cb065c1a8b3458232fac1a6394fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  ignoreHitbox: {fileID: 0}

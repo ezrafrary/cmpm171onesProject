@@ -19,6 +19,7 @@ public class PlayerSetup : MonoBehaviour
     public TextMeshPro nicknameText;
     
     public Transform TPweaponHolder;
+    
 
 
     [PunRPC]

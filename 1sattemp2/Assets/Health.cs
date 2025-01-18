@@ -16,9 +16,14 @@ public class Health : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI healthText;
 
+    
 
     public RectTransform healthBar;
     private float originalHealthBarSize;
+
+    private bool hasDied = false;
+
+    public bool hasTakenExplosiveDamageThisTick = false;
 
 
     private void Start(){
@@ -28,11 +33,16 @@ public class Health : MonoBehaviour
 
     [PunRPC]
     public void TakeDamage(int _damage){
+
+        if (hasDied){
+            return;
+        }
+
         health -= _damage;
         healthBar.sizeDelta = new Vector2(originalHealthBarSize * health / 100f, healthBar.sizeDelta.y);
         healthText.text = health.ToString();
         if(health <= 0){
-
+            hasDied = true;
             if(IsLocalPlayer){
                 
                 RoomManager.instance.SpawnPlayer();

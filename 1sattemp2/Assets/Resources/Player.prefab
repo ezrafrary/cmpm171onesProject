@@ -422,6 +422,7 @@ MonoBehaviour:
   IsLocalPlayer: 0
   healthText: {fileID: 3407054820039202635}
   healthBar: {fileID: 1549855588431033792}
+  hasTakenExplosiveDamageThisTick: 0
 --- !u!1 &508391612889662236
 GameObject:
   m_ObjectHideFlags: 0
