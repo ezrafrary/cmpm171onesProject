@@ -10,6 +10,7 @@ public class escapeMenu : MonoBehaviour
     public GameObject escapemenu;
     public MouseLook mouseLook;
     public WeaponSwitcher weaponSwitcher;
+    public GameObject playerObj;
 
     private bool menuOpen = false;
     private bool buttonWasPressedLastFrame = false;
@@ -57,12 +58,17 @@ public class escapeMenu : MonoBehaviour
         menuOpen = false;
     }
 
+
+    public void quitButtonPressed(){
+        Application.Quit();
+    }
     
     public void backToMenuButtonPressed(){
         ResetScene();
     }
     public void ResetScene()
     {
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -90,7 +90,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("left room");
         roomCam.SetActive(true);
         mainMenuUI.SetActive(true);
-
     }
 
     

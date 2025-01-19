@@ -152,6 +152,9 @@ ScriptsOnlyBuild:
     methodName: OnButtonPressed
   - assembly: Assembly-CSharp
     fullTypeName: escapeMenu
+    methodName: quitButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: escapeMenu
     methodName: backToMenuButtonPressed
   - assembly: Assembly-CSharp
     fullTypeName: switchMenus
@@ -204,6 +207,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: RoomManager
     methodName: JoinRoomButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: MainMenu
+    methodName: saveName
+  - assembly: Assembly-CSharp
+    fullTypeName: escapeMenu
+    methodName: quitButtonPressed
   - assembly: Assembly-CSharp
     fullTypeName: escapeMenu
     methodName: backToMenuButtonPressed
@@ -366,7 +375,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8332}
     - Class: 114
-      Script: {instanceID: 25366}
+      Script: {instanceID: 25426}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -400,7 +409,7 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: cd6785972d49f09d0b58af8db6b56769
+      Hash: f1ddb75bbe3bd05129bf4393b6336910
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Weapon
@@ -706,7 +715,7 @@ ScriptsOnlyBuild:
     className: PlayerNumbering
   - hash:
       serializedVersion: 2
-      Hash: bedf9855ad20e00a7c5612810f2590ce
+      Hash: ca9ff0e0096ad8f54af4b471dd7dc62f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MainMenu
@@ -1744,7 +1753,7 @@ ScriptsOnlyBuild:
     className: PunCockpit
   - hash:
       serializedVersion: 2
-      Hash: 42d6b0d27024e5c4eb1fd3e68d6907bf
+      Hash: ed30c995900b8fd7acff5cf62a3bfe2a
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: escapeMenu
