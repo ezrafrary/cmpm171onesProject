@@ -309,7 +309,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &5314338546499913095
 MonoBehaviour:
@@ -2056,7 +2056,7 @@ MonoBehaviour:
   recoilBack: 0.5
   bulletPrefab: {fileID: 7866606936160352011, guid: 56e1b3aedf502c543a00de87fc1d8506, type: 3}
   bulletSpawnPoint: {fileID: 3913784687324471846}
-  bulletSpeed: 4
+  bulletSpeed: 15
   playerObjForIgnoreHitbox: {fileID: 427471037947456812}
 --- !u!111 &1664994654226592600
 Animation:
