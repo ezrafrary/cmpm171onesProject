@@ -1300,6 +1300,7 @@ MonoBehaviour:
   roomCam: {fileID: 1675137312}
   nameUI: {fileID: 169231758}
   connectingUI: {fileID: 1990072398}
+  mainMenuUI: {fileID: 116531209}
   kills: 0
   deaths: 0
   playerSensX: 2

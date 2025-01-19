@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     [Header("UI")]
     public TextMeshProUGUI healthText;
 
-    
+    public bool hasTakenExplosiveDamageThisTick = false;
 
     public RectTransform healthBar;
     private float originalHealthBarSize;

@@ -27,6 +27,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [Space]
     public GameObject nameUI;
     public GameObject connectingUI;
+    public GameObject mainMenuUI;
 
     private string nickname = "unnamed";
 
@@ -77,12 +78,19 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom(){
         base.OnJoinedRoom();
-
+        connectingUI.SetActive(false);
         Debug.Log("We're connected and in a room!");
-
         roomCam.SetActive(false);
         SpawnPlayer();
         
+    }
+
+    public override void OnLeftRoom(){
+        base.OnLeftRoom();
+        Debug.Log("left room");
+        roomCam.SetActive(true);
+        mainMenuUI.SetActive(true);
+
     }
 
     

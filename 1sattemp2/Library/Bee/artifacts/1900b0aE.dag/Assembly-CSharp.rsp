@@ -371,6 +371,7 @@
 "Assets/BackToMenuButton.cs"
 "Assets/Bananadev's Pack/MouseLook.cs"
 "Assets/bullet.cs"
+"Assets/escapeMenu.cs"
 "Assets/FaceObjectToCamera.cs"
 "Assets/Health.cs"
 "Assets/killZone.cs"

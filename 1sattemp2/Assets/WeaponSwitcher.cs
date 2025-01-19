@@ -65,6 +65,28 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
+    public void preventFire(){
+        int i = 0;
+        foreach(Transform _weapon in transform){
+            if(i == selectedWeapon){
+                _weapon.gameObject.GetComponent<Weapon>().preventFire = true;
+                
+            }
+            i++;
+        }
+    }
+
+    public void allowFire(){
+        int i = 0;
+        foreach(Transform _weapon in transform){
+            if(i == selectedWeapon){
+                _weapon.gameObject.GetComponent<Weapon>().preventFire = false;
+                
+            }
+            i++;
+        }
+    }
+
     bool isCurrentWeaponReloading(){
         int i = 0;
         foreach(Transform _weapon in transform){

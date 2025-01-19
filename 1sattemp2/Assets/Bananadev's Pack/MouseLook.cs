@@ -61,6 +61,12 @@ public class MouseLook : MonoBehaviour
     }
 
 
+    public void UnlockCursor(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+
     void Update(){
         // Get raw mouse input for a cleaner reading on more sensitive mice.
         mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));

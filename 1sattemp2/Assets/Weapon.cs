@@ -59,7 +59,8 @@ public class Weapon : MonoBehaviour
     public float bulletSpeed = 4f;
     public GameObject playerObjForIgnoreHitbox;
 
-
+    [HideInInspector]
+    public bool preventFire = false;
 
     private Vector3 originalPosition;
     private Vector3 recoilVelocity = Vector3.zero;
@@ -95,7 +96,7 @@ public class Weapon : MonoBehaviour
             nextFire -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && !bulletPrefab){
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && !bulletPrefab && !preventFire){
             nextFire = 1 / fireRate;
             ammo--;
             
@@ -104,7 +105,7 @@ public class Weapon : MonoBehaviour
             Fire();
         }
 
-        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && bulletPrefab){
+        if (Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false && bulletPrefab && !preventFire){
             nextFire = 1 / fireRate;
             ammo--;
             
