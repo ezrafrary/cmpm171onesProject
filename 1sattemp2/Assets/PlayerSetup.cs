@@ -10,7 +10,7 @@ public class PlayerSetup : MonoBehaviour
 
     [Header("next 2 should be the same object")]
     public GameObject camera;
-    public Camera cameraObj;
+    public Camera cameraObj; //this is so we can set camerafov without having to jank it
 
     public string nickname;
     
@@ -39,6 +39,8 @@ public class PlayerSetup : MonoBehaviour
         camera.GetComponent<MouseLook>().setSensitivity(_sensX,_sensY);
     }
 
+
+    //this function is vital, do not change it unless you know what you are doing, and if you change it, note that you did so in the design doc
     public void IsLocalPlayer(){
         TPweaponHolder.gameObject.SetActive(false);
 

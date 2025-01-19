@@ -10,6 +10,12 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
 
+    /*
+        A lot going on here, watching the video https://www.youtube.com/watch?v=IQRx7ojL7r8&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=3&ab_channel=bananadev2
+        will help with understanding it, as well as the following 3 videos, but that only helps with understaindg weapon switching, the projectile weapons work
+        differenlty from how the video does it. 
+    */
+
     public Image ammoCircle;
     public Image reloadCircle;
 

@@ -21,9 +21,8 @@ public class Health : MonoBehaviour
     public RectTransform healthBar;
     private float originalHealthBarSize;
 
-    private bool hasDied = false;
+    private bool hasDied = false; //if the player takes 2 instances of damage in one frame, it duplicates client, this fixes that
 
-    public bool hasTakenExplosiveDamageThisTick = false;
 
 
     private void Start(){
@@ -34,7 +33,7 @@ public class Health : MonoBehaviour
     [PunRPC]
     public void TakeDamage(int _damage){
 
-        if (hasDied){
+        if (hasDied){ //making sure a player cant die twice in one frame. 
             return;
         }
 

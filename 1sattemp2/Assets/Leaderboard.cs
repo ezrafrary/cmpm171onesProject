@@ -13,7 +13,7 @@ public class Leaderboard : MonoBehaviour
     public GameObject playersHolder;
 
     [Header("Options")]
-    public float refreshRate = 1f;
+    public float refreshRate = 1f; //how often the leaderboard updates, in seconds. 1 second is enough, we dont need this constantly updating
 
     [Header("UI")]
     public GameObject[] slots;
@@ -25,7 +25,7 @@ public class Leaderboard : MonoBehaviour
 
 
     private void Start(){
-        InvokeRepeating(nameof(Refresh), 1f, refreshRate);
+        InvokeRepeating(nameof(Refresh), 1f, refreshRate); //this line is straignt from bananadev, idk how it works but it does
     }
 
     public void Refresh(){

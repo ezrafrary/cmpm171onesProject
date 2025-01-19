@@ -20,15 +20,22 @@ public class Movement : MonoBehaviour
 
     private bool grounded = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
+        /*
+        getting mouseinputs and movement button inputs in update rather than fixed update in order to make 
+        movement feel smoother. Technically this shuould be done in fixed update, but this is a movement 
+        based game and I would rather the game feel better to run around in than have the shooting be 100%
+        accurate to what you see on your end.
+        */
+
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         input.Normalize();
 
@@ -51,6 +58,9 @@ public class Movement : MonoBehaviour
         grounded = true;
     }
 
+
+
+    //basic movment script, we can change anything in here whenever we want. this is not set in stone
     Vector3 CalculateMovement(float speed){
         Vector3 targetVelocity = new Vector3(input.x, 0, input.y); //input is a vector2, so we are converting it to vector3
         targetVelocity = transform.TransformDirection(targetVelocity);

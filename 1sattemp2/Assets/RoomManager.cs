@@ -7,6 +7,15 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
 
+    /*
+        this class handles most of te serverside things. watch all of the following videos before editing it:
+        https://www.youtube.com/watch?v=xRXOnuFji-Q&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=1&ab_channel=bananadev2 
+        https://www.youtube.com/watch?v=mZP_X1ejj8s&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=5&ab_channel=bananadev2 
+        https://www.youtube.com/watch?v=x8dfgCoe53w&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=10&ab_channel=bananadev2 
+        https://www.youtube.com/watch?v=TOP-huJ9duY&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=12&ab_channel=bananadev2 
+        https://www.youtube.com/watch?v=_QilKZ1f5Vo&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=13&ab_channel=bananadev2
+    */
+
     public static RoomManager instance;
 
     public GameObject player;

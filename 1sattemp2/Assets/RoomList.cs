@@ -8,6 +8,9 @@ using TMPro;
 public class RoomList : MonoBehaviourPunCallbacks
 {
 
+    //almost all of this code is from the bannadev video https://www.youtube.com/watch?v=_QilKZ1f5Vo&list=PL0iUgXtqnG2gPaXE1hHYoBjqTSWTNwR-6&index=13&ab_channel=bananadev2
+    //if you are going to change anything in here, please watch the video first.
+    
     public static RoomList Instance;
     public GameObject roomManagerGameObject;
     public RoomManager roomManager;

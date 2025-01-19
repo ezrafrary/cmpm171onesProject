@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Sway : MonoBehaviour
 {
+
+    //optional script to put on weapons to make them bob up and down with the players position
+
     [Header("Settings")]
     public float swayClamp = 0.9f;
     [Space]
