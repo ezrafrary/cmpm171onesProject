@@ -10,8 +10,6 @@ public class MainMenu : MonoBehaviour
     public OptionsMenu optionsMenuObj;
     public TMP_InputField nameInputField;
     private string defaultname = "test1";
-    public RoomManager roomManager;
-    public TMP_InputField roomInputField;
 
 
     void Start(){
@@ -26,14 +24,10 @@ public class MainMenu : MonoBehaviour
 
     public void saveName(){
         PlayerPrefs.SetString("playerName", nameInputField.text);
-        roomManager.ChangeNicname(nameInputField.text);
-        roomInputField.text = nameInputField.text;
     }
 
     public void loadName(){
         nameInputField.text = PlayerPrefs.GetString("playerName", defaultname);
-        roomManager.ChangeNicname(nameInputField.text);
-        roomInputField.text = nameInputField.text;
     }
 
     public void PlayButtonClicked(){

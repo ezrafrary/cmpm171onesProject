@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -66,8 +68,19 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void JoinRoomButtonPressed(){
         Debug.Log("Connecting");
 
+        RoomOptions ro = new RoomOptions();
+        ro.CustomRoomProperties = new Hashtable(){
+            {"mapSceneIndex", SceneManager.GetActiveScene().buildIndex}
+        };
         
-        PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
+        ro.CustomRoomPropertiesForLobby = new []
+        {
+            "mapSceneIndex"
+        };
+
+
+
+        PhotonNetwork.JoinOrCreateRoom(PlayerPrefs.GetString("RoomNameToJoin"), ro, null);
 
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
@@ -78,7 +91,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom(){
         base.OnJoinedRoom();
-        connectingUI.SetActive(false);
+
         Debug.Log("We're connected and in a room!");
         roomCam.SetActive(false);
         SpawnPlayer();
@@ -89,7 +102,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         Debug.Log("left room");
         roomCam.SetActive(true);
-        mainMenuUI.SetActive(true);
+        try{
+            mainMenuUI.SetActive(true);
+        }catch{
+
+        }
     }
 
     

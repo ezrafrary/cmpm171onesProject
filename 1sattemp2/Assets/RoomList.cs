@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RoomList : MonoBehaviourPunCallbacks
 {
@@ -12,8 +13,6 @@ public class RoomList : MonoBehaviourPunCallbacks
     //if you are going to change anything in here, please watch the video first.
     
     public static RoomList Instance;
-    public GameObject roomManagerGameObject;
-    public RoomManager roomManager;
 
     [Header("UI")]
     public Transform roomListParent;
@@ -21,11 +20,23 @@ public class RoomList : MonoBehaviourPunCallbacks
 
     private List<RoomInfo> cachedRoomList = new List<RoomInfo>();
 
+    private int roomJoinSceneIndex = 1;
 
-    public void ChangeRoomToCreateName(string _roomName){
-        roomManager.roomNameToJoin = _roomName;
+
+    private string cachedRoomNameToCreate = "Unnamed Room";
+
+
+    public void changeRoomJoinIndex(int newIndex){
+        roomJoinSceneIndex = newIndex;
     }
 
+    public void ChangeRoomToCreateName(string _roomName){
+        cachedRoomNameToCreate = _roomName;
+    }
+
+    public void CreateRoomByIndex(){
+        JoinRoomByName(cachedRoomNameToCreate, roomJoinSceneIndex);
+    }
 
 
     private void Awake(){
@@ -91,14 +102,23 @@ public class RoomList : MonoBehaviourPunCallbacks
             roomItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = room.PlayerCount + "/16";
             
             roomItem.GetComponent<RoomItemButton>().RoomName = room.Name;
+
+            int roomSceneIndex = 1;
+
+            object sceneIndexObject;
+            if(room.CustomProperties.TryGetValue("mapSceneIndex", out sceneIndexObject)){
+                roomSceneIndex = (int)sceneIndexObject;
+            }
+
+            roomItem.GetComponent<RoomItemButton>().SceneIndex = roomSceneIndex;
         }
 
     }
 
-    public void JoinRoomByName(string _name){
-        roomManager.roomNameToJoin = _name;
-        roomManagerGameObject.SetActive(true);
+    public void JoinRoomByName(string _name, int _sceneIndex){
+        PlayerPrefs.SetString("RoomNameToJoin", _name);
         gameObject.SetActive(false);
+        SceneManager.LoadScene(_sceneIndex);//change to _sceneIndex
     }
 
 }
