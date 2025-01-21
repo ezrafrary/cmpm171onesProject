@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -12,11 +13,28 @@ public class Movement : MonoBehaviour
     public float jumpHeight = 5f;
 
 
+    [Space]
+    public Transform lookingDirection;
+
+    public float dashStrength;
+    public Image dashCooldownImage;
+
+    [Header("in game ticks")]
+    public float dashCooldown;
+    public float dashDuration;
+
+
     private Vector2 input;
     private Rigidbody rb;
 
     private bool sprinting;
     private bool jumping;
+    private bool dashing;
+    
+    
+    private float currentDashCooldown;
+    private float currentDashDurationCooldown;
+
 
     private bool grounded = false;
 
@@ -41,16 +59,35 @@ public class Movement : MonoBehaviour
 
         sprinting = Input.GetButton("Sprint");
         jumping = Input.GetButton("Jump");
+        dashing = Input.GetButton("Dash");
+        setDashCooldownCircle();
     }
 
 
+    public void setDashCooldownCircle(){
+        dashCooldownImage.fillAmount = (float) currentDashCooldown / dashCooldown;
+    }
+
     void FixedUpdate(){
+        if(currentDashCooldown > 0){
+            currentDashCooldown--;
+        }
+        if(currentDashDurationCooldown > 0){
+            currentDashDurationCooldown--;
+        }
+
         if (grounded){
             if (jumping){
                 rb.velocity = new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z);
             }
         }
         rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);
+
+        if(dashing && currentDashCooldown < 1){
+            currentDashCooldown = dashCooldown;
+            currentDashDurationCooldown = dashDuration;
+        }
+
         grounded = false; 
     }
 
@@ -59,6 +96,9 @@ public class Movement : MonoBehaviour
     }
 
 
+    private void Dash(){
+    
+    }
 
     //basic movment script, we can change anything in here whenever we want. this is not set in stone
     Vector3 CalculateMovement(float speed){
@@ -69,13 +109,19 @@ public class Movement : MonoBehaviour
 
         Vector3 velocity = rb.velocity;
 
+        Vector3 dashingDirection = lookingDirection.forward;
+        Debug.Log(dashingDirection);
+        
+
         if(input.magnitude > 0.5f){
             Vector3 velocityChange = targetVelocity - velocity;
             velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
             velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
 
             velocityChange.y = 0;
-
+            if(dashing && currentDashDurationCooldown > 0){
+                velocityChange = velocityChange + (dashingDirection * dashStrength);
+            }
             return velocityChange;
         } else {
             if(grounded){ 
