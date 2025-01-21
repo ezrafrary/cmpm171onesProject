@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 3724272249194503129}
   - component: {fileID: 5504145836732497011}
   - component: {fileID: 5244040397720563872}
+  - component: {fileID: 6361266890349526570}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -357,7 +358,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5d1a8cfcf2ee440458e8193773d6f398, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -444,7 +445,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &5314338546499913095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +574,29 @@ MonoBehaviour:
   mouseLook: {fileID: 2764994363905514161}
   weaponSwitcher: {fileID: 5002997979760141731}
   playerObj: {fileID: 427471037947456812}
+--- !u!136 &6361266890349526570
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427471037947456812}
+  m_Material: {fileID: 13400000, guid: 636c0b8e99146034cbb35002dd51884b, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.53
+  m_Height: 1.96
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &508391612889662236
 GameObject:
   m_ObjectHideFlags: 0
