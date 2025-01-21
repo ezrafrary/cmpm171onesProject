@@ -24,10 +24,10 @@ public class Health : MonoBehaviour
     private bool hasDied = false; //if the player takes 2 instances of damage in one frame, it duplicates client, this fixes that
 
 
-
     private void Start(){
         originalHealthBarSize = healthBar.sizeDelta.x;
     }
+
 
 
     [PunRPC]
@@ -58,6 +58,5 @@ public class Health : MonoBehaviour
         if (health > 0){ //This seems pointless, but if you use OnTriggerEnter as a damage field, it gets called twice in one frame, duplicating a client 
             TakeDamage(health);
         }
-
     }
 }

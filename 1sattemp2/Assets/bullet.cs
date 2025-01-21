@@ -48,17 +48,14 @@ public class Bullet : MonoBehaviour
 
         if (other.transform.gameObject.GetComponent<Health>() && other.transform.gameObject != ignoreHitbox){
             
-            
             //PhotonNetwork.LocalPlayer.AddScore(damage); add score for damage
             if (damage >= other.transform.gameObject.GetComponent<Health>().health){
                 //kill
-
                 RoomManager.instance.kills++;
                 RoomManager.instance.SetHashes();
                 PhotonNetwork.LocalPlayer.AddScore(1);
             }
             other.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, damage);
-            
         }
             
             
@@ -67,10 +64,6 @@ public class Bullet : MonoBehaviour
                 PhotonNetwork.Destroy(gameObject);
             }
         }
-
-        
-        
-
     }
 
     void ExplosionDamage(Vector3 center, float radius)
