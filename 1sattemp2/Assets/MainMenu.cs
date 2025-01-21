@@ -5,7 +5,6 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject RoomManagerObject;
     public GameObject mainMenuObject;
     public OptionsMenu optionsMenuObj;
     public TMP_InputField nameInputField;
@@ -31,7 +30,6 @@ public class MainMenu : MonoBehaviour
     }
 
     public void PlayButtonClicked(){
-        RoomManagerObject.SetActive(true);
         mainMenuObject.SetActive(false);
     }
 }

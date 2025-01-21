@@ -15,7 +15,7 @@ public class OptionsMenu : MonoBehaviour
     private float defaultFov = 60;
 
 
-    //it is awkward to change settings on player, go from OptionsMenu.cs -> RoomManager.cs -> PlayerSetup.cs -> MouseLook.cs
+    //it is awkward to change settings on player, use player prefs 
 
     void Start(){
         loadSettings();
