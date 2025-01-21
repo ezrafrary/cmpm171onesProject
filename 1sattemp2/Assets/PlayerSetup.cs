@@ -21,6 +21,11 @@ public class PlayerSetup : MonoBehaviour
     public Transform TPweaponHolder;
     
 
+    int defaultFov = 60;
+
+    void Start(){
+        SetCameraFov(PlayerPrefs.GetInt("FOV", defaultFov));
+    }
 
     [PunRPC]
     public void SetTPWeapon(int _weaponIndex){

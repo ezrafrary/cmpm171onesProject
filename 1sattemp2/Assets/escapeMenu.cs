@@ -69,7 +69,7 @@ public class escapeMenu : MonoBehaviour
     public void ResetScene()
     {
         PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 
 }

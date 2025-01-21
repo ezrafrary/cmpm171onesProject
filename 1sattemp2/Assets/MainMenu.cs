@@ -17,10 +17,6 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    public void nameInputChanged(){
-
-    }
-
     public void saveName(){
         PlayerPrefs.SetString("playerName", nameInputField.text);
     }

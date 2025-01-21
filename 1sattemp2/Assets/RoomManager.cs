@@ -31,7 +31,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject connectingUI;
     public GameObject mainMenuUI;
 
-    private string nickname = "unnamed";
+    private string defaultname = "unnamed";
 
     [HideInInspector]
     public int kills = 0;
@@ -62,7 +62,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
 
     public void ChangeNicname(string _name){
-        nickname = _name;
+        PlayerPrefs.SetString("playerName", _name);
     }
     
     public void JoinRoomButtonPressed(){
@@ -118,14 +118,14 @@ public class RoomManager : MonoBehaviourPunCallbacks
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer(); 
         _player.GetComponent<Health>().IsLocalPlayer = true; 
-        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
+        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, PlayerPrefs.GetString("playerName", defaultname));
 
 
         //set local settings using PlayerSetup
         _player.GetComponent<PlayerSetup>().SetPlayerSens(playerSensX, playerSensY);
         _player.GetComponent<PlayerSetup>().SetCameraFov(playerFov);
 
-        PhotonNetwork.LocalPlayer.NickName = nickname;
+        PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("playerName", defaultname);
         
     }
 
