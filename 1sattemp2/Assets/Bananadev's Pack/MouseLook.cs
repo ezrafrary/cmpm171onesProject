@@ -26,13 +26,14 @@ public class MouseLook : MonoBehaviour
     private Vector2 _smoothMouse;
 
     private Vector2 mouseDelta;
+    private float defaultSens = 2;
 
     [HideInInspector]
     public bool scoped;
 
     void Start()
     {
-
+        loadSettings();
         instance = this;
 
         // Set target direction to the camera's initial orientation.
@@ -47,7 +48,10 @@ public class MouseLook : MonoBehaviour
 
     }
 
-
+    public void loadSettings(){
+        float testSens = PlayerPrefs.GetFloat("SensXY", defaultSens);
+        sensitivity = new Vector2(testSens, testSens);
+    }
 
     public void setSensitivity(float _sensX, float _sensY){
         sensitivity = new Vector2(_sensX, _sensY);
