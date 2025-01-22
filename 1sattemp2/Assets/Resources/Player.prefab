@@ -421,6 +421,7 @@ MonoBehaviour:
   jumpHeight: 5
   lookingDirection: {fileID: 7735398053568613310}
   dashStrength: 3
+  maxDashYVelocity: 1.5
   dashCooldownImage: {fileID: 445981631965617065}
   dashCooldown: 400
   dashDuration: 10
@@ -1566,7 +1567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8037735, g: 0.040946886, b: 0.040946886, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1828,7 +1829,7 @@ Transform:
   m_GameObject: {fileID: 4791635807964533424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.05}
+  m_LocalPosition: {x: 0, y: 0, z: 1.139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1852,7 +1853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7735398053568613310
 Transform:
   m_ObjectHideFlags: 0

@@ -77,7 +77,6 @@ public class Bullet : MonoBehaviour
                     
                     if (explosiveDamage >= hitCollider.transform.gameObject.GetComponent<Health>().health){
                         //kill
-
                         RoomManager.instance.kills++;
                         RoomManager.instance.SetHashes();
                         PhotonNetwork.LocalPlayer.AddScore(1);

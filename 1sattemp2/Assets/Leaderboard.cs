@@ -21,7 +21,9 @@ public class Leaderboard : MonoBehaviour
     public TextMeshProUGUI[] scoreTexts;
     public TextMeshProUGUI[] nameTexts;
     public TextMeshProUGUI[] kdTexts;
+    public GameObject leadingPlayer;
 
+    private int maxScore;
 
 
     private void Start(){
@@ -34,6 +36,7 @@ public class Leaderboard : MonoBehaviour
         }
 
         var sortedPlayerList = (from player in PhotonNetwork.PlayerList orderby player.GetScore() descending select player).ToList();
+
         int i = 0;
         foreach (var player in sortedPlayerList){
             slots[i].SetActive(true);

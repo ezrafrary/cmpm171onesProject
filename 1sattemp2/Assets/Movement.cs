@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     public Transform lookingDirection;
 
     public float dashStrength;
+    public float maxDashYVelocity = 1.5f;
     public Image dashCooldownImage;
 
     [Header("in game ticks")]
@@ -83,7 +84,7 @@ public class Movement : MonoBehaviour
         }
         rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);
 
-        if(dashing && currentDashCooldown < 1){
+        if(dashing && currentDashCooldown < 1 && input.magnitude > 0.5f){ //can only dash if player is pressing a movment key
             currentDashCooldown = dashCooldown;
             currentDashDurationCooldown = dashDuration;
         }
@@ -91,13 +92,8 @@ public class Movement : MonoBehaviour
         grounded = false; 
     }
 
-    private void OnTriggerStay(Collider other){
+    private void OnTriggerStay(Collider other){ //handling checking if the player is grounded. we will change this later(probably)
         grounded = true;
-    }
-
-
-    private void Dash(){
-    
     }
 
     //basic movment script, we can change anything in here whenever we want. this is not set in stone
@@ -110,7 +106,6 @@ public class Movement : MonoBehaviour
         Vector3 velocity = rb.velocity;
 
         Vector3 dashingDirection = lookingDirection.forward;
-        Debug.Log(dashingDirection);
         
 
         if(input.magnitude > 0.5f){
@@ -121,6 +116,9 @@ public class Movement : MonoBehaviour
             velocityChange.y = 0;
             if(dashing && currentDashDurationCooldown > 0){
                 velocityChange = velocityChange + (dashingDirection * dashStrength);
+                if (velocityChange.y > maxDashYVelocity){
+                    velocityChange.y = maxDashYVelocity;
+                }
             }
             return velocityChange;
         } else {

@@ -369,6 +369,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.52f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.52f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/BackToMenuButton.cs"
+"Assets/backToMenuScript.cs"
 "Assets/Bananadev's Pack/MouseLook.cs"
 "Assets/bullet.cs"
 "Assets/escapeMenu.cs"
@@ -431,6 +432,7 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+"Assets/timerScript.cs"
 "Assets/Weapon.cs"
 "Assets/WeaponSwitcher.cs"
 -langversion:9.0

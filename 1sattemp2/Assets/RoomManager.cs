@@ -47,10 +47,21 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public string roomNameToJoin = "test";
     
 
+    private List<GameObject> players = new List<GameObject>();
+    
+
     void Awake(){
         instance = this;
     }
 
+
+    public void timerEnded(){
+        Debug.Log("Players: " + players);
+    }
+
+    public void GameOver(){
+        
+    }
 
     public void changeSens(float _sensX, float _sensY){
         playerSensX = _sensX;
@@ -127,6 +138,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("playerName", defaultname);
         
+
+        players.Add(_player);
     }
 
     
