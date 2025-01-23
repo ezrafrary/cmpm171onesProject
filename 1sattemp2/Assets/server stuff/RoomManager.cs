@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -30,6 +31,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject nameUI;
     public GameObject connectingUI;
     public GameObject mainMenuUI;
+    public GameObject gameOverUI;
+
+    public PhotonTimer timer;
 
     private string defaultname = "unnamed";
 
@@ -45,22 +49,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public float playerFov = 60;
 
     public string roomNameToJoin = "test";
-    
 
+
+    
     private List<GameObject> players = new List<GameObject>();
     
 
+
     void Awake(){
         instance = this;
-    }
-
-
-    public void timerEnded(){
-        Debug.Log("Players: " + players);
-    }
-
-    public void GameOver(){
-        
     }
 
     public void changeSens(float _sensX, float _sensY){
@@ -95,9 +92,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
+        
     }
 
-   
+
 
 
     public override void OnJoinedRoom(){
@@ -106,8 +104,45 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Debug.Log("We're connected and in a room!");
         roomCam.SetActive(false);
         SpawnPlayer();
-        
+        timer.StartTimer();
     }
+
+
+//does not work lol
+    public void SpawnAllPlayersNotReady()
+{
+    // Loop through all players in the room
+    foreach (Player i in PhotonNetwork.PlayerList)
+    {
+        // Check if the player has the "hasClickedStartButton" property
+        if (!i.CustomProperties.ContainsKey("hasClickedStartButton") || 
+            (bool)i.CustomProperties["hasClickedStartButton"] == false)
+        {
+            // If they have not clicked the start button, spawn them
+            Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
+            GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+
+            // Check if this is the local player
+            if (_player.GetComponent<PhotonView>().IsMine)
+            {
+                // Set local player specific settings
+                _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+                _player.GetComponent<Health>().IsLocalPlayer = true; 
+                _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, PlayerPrefs.GetString("playerName", defaultname));
+
+                // Set local settings using PlayerSetup
+                _player.GetComponent<PlayerSetup>().SetPlayerSens(playerSensX, playerSensY);
+                _player.GetComponent<PlayerSetup>().SetCameraFov(playerFov);
+            }
+
+            PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("playerName", defaultname);
+            players.Add(_player);
+        }
+    }
+}
+
+
+
 
     public override void OnLeftRoom(){
         base.OnLeftRoom();
@@ -119,8 +154,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         }
     }
-
-    
 
     public void SpawnPlayer(){
 

@@ -21,14 +21,17 @@ public class Leaderboard : MonoBehaviour
     public TextMeshProUGUI[] scoreTexts;
     public TextMeshProUGUI[] nameTexts;
     public TextMeshProUGUI[] kdTexts;
-    public GameObject leadingPlayer;
+
 
     private int maxScore;
+    
 
 
     private void Start(){
         InvokeRepeating(nameof(Refresh), 1f, refreshRate); //this line is straignt from bananadev, idk how it works but it does
     }
+
+
 
     public void Refresh(){
         foreach (var slot in slots){
