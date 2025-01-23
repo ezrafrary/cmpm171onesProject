@@ -70,6 +70,11 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public static void UnlockCursorStatic(){
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
 
     void Update(){
         // Get raw mouse input for a cleaner reading on more sensitive mice.

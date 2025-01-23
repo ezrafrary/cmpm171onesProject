@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - Movement
     - PlayerSetup
     - Sway
+    - TimerDisplay
     - Weapon
     - WeaponSwitcher
     - escapeMenu
@@ -50,8 +51,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonRigidbodyView
     - Photon.Pun.PhotonTransformView
@@ -152,6 +151,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
+    fullTypeName: RoomItemButton
+    methodName: OnButtonPressed
+  - assembly: Assembly-CSharp
     fullTypeName: switchMenus
     methodName: switchScreens
   - assembly: Assembly-CSharp
@@ -230,9 +232,6 @@ ScriptsOnlyBuild:
     fullTypeName: MainMenu
     methodName: saveName
   - assembly: Assembly-CSharp
-    fullTypeName: RoomItemButton
-    methodName: OnButtonPressed
-  - assembly: Assembly-CSharp
     fullTypeName: escapeMenu
     methodName: quitButtonPressed
   - assembly: Assembly-CSharp
@@ -244,6 +243,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: escapeMenu
     methodName: backToMenuButtonPressed
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomManager
+    methodName: respawnPlayer
   - assembly: Assembly-CSharp
     fullTypeName: RoomManager
     methodName: JoinRoomButtonPressed
@@ -263,7 +265,7 @@ ScriptsOnlyBuild:
     fullTypeName: RoomManager
     methodName: JoinRoomButtonPressed
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/mainMenu(start here).unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -390,6 +392,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6418}
     - Class: 114
       Script: {instanceID: 6420}
+    - Class: 114
+      Script: {instanceID: 6458}
     - Class: 114
       Script: {instanceID: 6528}
     - Class: 114
@@ -646,6 +650,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6324}
     - Class: 114
       Script: {instanceID: 6410}
+    - Class: 114
+      Script: {instanceID: 6458}
     - Class: 114
       Script: {instanceID: 6528}
     - Class: 114
@@ -1473,7 +1479,7 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionStay2DMessageListener
   - hash:
       serializedVersion: 2
-      Hash: a6f1c3b89396269e66fa05692900a0b3
+      Hash: db044c2a6fdab487e48ea9d6e4354cab
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: timerScript
@@ -2127,7 +2133,7 @@ ScriptsOnlyBuild:
     className: PlayerNameInputField
   - hash:
       serializedVersion: 2
-      Hash: d4efa46acdf2a68de73a8647b45c4cd3
+      Hash: bcf6144d75a25cfb6693653b99392d93
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Health
@@ -2319,7 +2325,7 @@ ScriptsOnlyBuild:
     className: ToDemoHubButton
   - hash:
       serializedVersion: 2
-      Hash: 921b6f95c429e4ab5063bf921144ce3b
+      Hash: 0672391f23657d21f34d14098b96cf1c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: RoomManager
@@ -2649,7 +2655,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 8e6ac0c2e4a459eb3af0825b9f1d0b7f
+      Hash: d838cce0a7d665d34fbc537ade7bbdc1
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PhotonTimer
@@ -2739,7 +2745,7 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 19
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/mainMenu(start here).unity
   - Assets/Scenes/testLevel.unity
   - Assets/Scenes/testLevel2.unity
   playerPath: C:/Users/User/Desktop/onesBuilds/1s.exe

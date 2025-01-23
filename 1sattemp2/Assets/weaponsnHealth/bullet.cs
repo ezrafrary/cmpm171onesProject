@@ -74,8 +74,8 @@ public class Bullet : MonoBehaviour
             if (hitCollider.transform.gameObject.GetComponent<Health>()){
                 if(!hitCollider.transform.gameObject.GetComponent<Health>().hasTakenExplosiveDamageThisTick){
                     hitCollider.transform.gameObject.GetComponent<Health>().hasTakenExplosiveDamageThisTick = true;
-                    
-                    if (explosiveDamage >= hitCollider.transform.gameObject.GetComponent<Health>().health){
+
+                    if (explosiveDamage >= hitCollider.transform.gameObject.GetComponent<Health>().health && hitCollider.transform.gameObject.GetComponent<Health>().health > 0){
                         //kill
                         RoomManager.instance.kills++;
                         RoomManager.instance.SetHashes();

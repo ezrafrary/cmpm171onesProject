@@ -15,7 +15,9 @@ public class Health : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI healthText;
+    public GameObject respawnUI;
 
+    [Space]
     public bool hasTakenExplosiveDamageThisTick = false;
 
     public RectTransform healthBar;
@@ -23,6 +25,7 @@ public class Health : MonoBehaviour
 
     private bool hasDied = false; //if the player takes 2 instances of damage in one frame, it duplicates client, this fixes that
 
+    
 
     private void Start(){
         originalHealthBarSize = healthBar.sizeDelta.x;
@@ -43,15 +46,15 @@ public class Health : MonoBehaviour
         if(health <= 0){
             hasDied = true;
             if(IsLocalPlayer){
-                
-                RoomManager.instance.SpawnPlayer();
+                RoomManager.instance.PlayerDied(); //calls spawnplayer() in here
                 RoomManager.instance.deaths++;
                 RoomManager.instance.SetHashes();
-
             }
             Destroy(gameObject);
         }
     }
+
+    
 
     [PunRPC]
     public void KillPlayer(){

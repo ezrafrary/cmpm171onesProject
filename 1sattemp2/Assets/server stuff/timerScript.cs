@@ -6,7 +6,10 @@ public class timerScript : MonoBehaviourPunCallbacks
 {
     public float timerDuration = 10f;
 
+    public RoomManager roomManager;
     private float origionalTimerDuration;
+
+
 
     void Start(){
         origionalTimerDuration = timerDuration;
@@ -29,6 +32,7 @@ public class timerScript : MonoBehaviourPunCallbacks
 
     public void timerEnded(){
         Debug.Log("timer ended");
+        roomManager.EndGame();
     }
 
 

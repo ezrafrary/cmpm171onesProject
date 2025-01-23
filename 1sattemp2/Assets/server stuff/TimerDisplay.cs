@@ -17,13 +17,23 @@ public class TimerDisplay : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public static string ConvertSecondsToMinutes(int totalSeconds)
+    {
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        
+        // Format the string as "minutes:seconds"
+        return minutes + ":" + seconds;
+    }
+
     void Update()
     {
         // Display the timer value
         if (photonTimer != null)
         {
             // Show the timer value with a 1 decimal place precision
-            timerText.text = "Time Left: " + Mathf.CeilToInt(photonTimer.timer).ToString();
+            timerText.text = ConvertSecondsToMinutes(Mathf.CeilToInt(photonTimer.timer));
         }
     }
 }

@@ -6,8 +6,10 @@ public class PhotonTimer : MonoBehaviourPunCallbacks
     private float startTime; // The time when the timer starts
     public float timer = 0; // The timer value (in seconds)
     public bool isTimerRunning = true; // Whether the timer is running or not
-
     public float timerDuration = 60f; // The total duration for the timer (in seconds)
+    public RoomManager roomManager;
+    private bool hasTimerRanBefore = false;
+
 
     void Start()
     {
@@ -16,21 +18,33 @@ public class PhotonTimer : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (isTimerRunning)
-        {
-            if (PhotonNetwork.IsMasterClient)
+        if(hasTimerRanBefore == true){
+            
+            if (isTimerRunning)
             {
-                // Update the timer for the MasterClient only
-                timer = timerDuration - (Time.time - startTime);
-                if (timer <= 0f)
+                if (PhotonNetwork.IsMasterClient)
                 {
-                    isTimerRunning = false;
-                    timer = 0f; // Prevent timer from going negative
-                    OnTimerEnd(); // Call timer end action (e.g., end game, etc.)
+                    // Update the timer for the MasterClient only
+                    timer = timerDuration - (Time.time - startTime);
+                    if (timer <= 0f)
+                    {
+                        isTimerRunning = false;
+                        timer = 0f; // Prevent timer from going negative
+                        OnTimerEnd(); // Call timer end action (e.g., end game, etc.)
+                    }
+                    
+                    // Synchronize the timer value across the network
+                    photonView.RPC("SyncTimer", RpcTarget.Others, timer);
+                }else{
+                    //for players who are not hosting server
+                    if (timer <= 0f)
+                    {
+                        isTimerRunning = false;
+                        timer = 0f; // Prevent timer from going negative
+                        OnTimerEnd(); // Call timer end action (e.g., end game, etc.)
+                    }
                 }
                 
-                // Synchronize the timer value across the network
-                photonView.RPC("SyncTimer", RpcTarget.Others, timer);
             }
         }
     }
@@ -49,14 +63,13 @@ public class PhotonTimer : MonoBehaviourPunCallbacks
     private void OnTimerEnd()
     {
         Debug.Log("Timer has ended!");
-
-        // Add logic for what happens when the timer ends, such as ending the game
-        // or triggering a new event in the game (like spawning a new level).
+        roomManager.EndGame();
     }
 
     // Function to start the timer manually
     public void StartTimer()
     {
+        hasTimerRanBefore = true;
         if (PhotonNetwork.IsMasterClient)
         {
             startTime = Time.time;

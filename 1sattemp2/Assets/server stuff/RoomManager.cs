@@ -31,6 +31,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject nameUI;
     public GameObject connectingUI;
     public GameObject mainMenuUI;
+    public GameObject youDiedUi;
     public GameObject gameOverUI;
 
     public PhotonTimer timer;
@@ -59,6 +60,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     void Awake(){
         instance = this;
     }
+
 
     public void changeSens(float _sensX, float _sensY){
         playerSensX = _sensX;
@@ -96,53 +98,16 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
 
 
-
-
     public override void OnJoinedRoom(){
         base.OnJoinedRoom();
 
         Debug.Log("We're connected and in a room!");
+        connectingUI.SetActive(false);
         roomCam.SetActive(false);
         SpawnPlayer();
         timer.StartTimer();
+
     }
-
-
-//does not work lol
-    public void SpawnAllPlayersNotReady()
-{
-    // Loop through all players in the room
-    foreach (Player i in PhotonNetwork.PlayerList)
-    {
-        // Check if the player has the "hasClickedStartButton" property
-        if (!i.CustomProperties.ContainsKey("hasClickedStartButton") || 
-            (bool)i.CustomProperties["hasClickedStartButton"] == false)
-        {
-            // If they have not clicked the start button, spawn them
-            Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
-            GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
-
-            // Check if this is the local player
-            if (_player.GetComponent<PhotonView>().IsMine)
-            {
-                // Set local player specific settings
-                _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-                _player.GetComponent<Health>().IsLocalPlayer = true; 
-                _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, PlayerPrefs.GetString("playerName", defaultname));
-
-                // Set local settings using PlayerSetup
-                _player.GetComponent<PlayerSetup>().SetPlayerSens(playerSensX, playerSensY);
-                _player.GetComponent<PlayerSetup>().SetCameraFov(playerFov);
-            }
-
-            PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("playerName", defaultname);
-            players.Add(_player);
-        }
-    }
-}
-
-
-
 
     public override void OnLeftRoom(){
         base.OnLeftRoom();
@@ -152,6 +117,35 @@ public class RoomManager : MonoBehaviourPunCallbacks
             mainMenuUI.SetActive(true);
         }catch{
 
+        }
+    }
+
+    public void PlayerDied(){ //gets called by Health.cs when the player dies
+        Debug.Log("player died");
+        MouseLook.UnlockCursorStatic();
+        roomCam.SetActive(true);
+        youDiedUi.SetActive(true);
+    }
+
+    public void respawnPlayer(){
+        roomCam.SetActive(false);
+        youDiedUi.SetActive(false);
+        SpawnPlayer();
+    }
+
+    public void EndGame(){
+        KillAllPlayers(); //calls playerDied()
+        roomCam.SetActive(true);
+        youDiedUi.SetActive(false);
+        gameOverUI.SetActive(true);
+        Debug.Log("game ended");
+    }
+
+
+    public void KillAllPlayers(){
+        foreach (GameObject i in players){
+            Debug.Log(i);
+            i.GetComponent<PhotonView>().RPC("KillPlayer",RpcTarget.All);
         }
     }
 
