@@ -109,6 +109,7 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
+-define:UNITY_PRO_LICENSE
 -define:ENABLE_CUSTOM_RENDER_TEXTURE
 -define:ENABLE_DIRECTOR
 -define:ENABLE_LOCALIZATION
@@ -374,6 +375,7 @@
 "Assets/bullet.cs"
 "Assets/escapeMenu.cs"
 "Assets/FaceObjectToCamera.cs"
+"Assets/FPSDisplay.cs"
 "Assets/Health.cs"
 "Assets/killZone.cs"
 "Assets/Leaderboard.cs"
