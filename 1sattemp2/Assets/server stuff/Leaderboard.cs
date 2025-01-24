@@ -14,6 +14,7 @@ public class Leaderboard : MonoBehaviour
 
     [Header("Options")]
     public float refreshRate = 1f; //how often the leaderboard updates, in seconds. 1 second is enough, we dont need this constantly updating
+    public bool isToggleableWithTab;
 
     [Header("UI")]
     public GameObject[] slots;
@@ -21,7 +22,6 @@ public class Leaderboard : MonoBehaviour
     public TextMeshProUGUI[] scoreTexts;
     public TextMeshProUGUI[] nameTexts;
     public TextMeshProUGUI[] kdTexts;
-
 
     private int maxScore;
     
@@ -31,7 +31,9 @@ public class Leaderboard : MonoBehaviour
         InvokeRepeating(nameof(Refresh), 1f, refreshRate); //this line is straignt from bananadev, idk how it works but it does
     }
 
-
+    void OnEnable(){
+        Refresh();
+    }
 
     public void Refresh(){
         foreach (var slot in slots){
@@ -62,6 +64,8 @@ public class Leaderboard : MonoBehaviour
     }
 
     private void Update(){
-        playersHolder.SetActive(Input.GetKey(KeyCode.Tab));
+        if(isToggleableWithTab){  
+            playersHolder.SetActive(Input.GetKey(KeyCode.Tab));
+        }
     }
 }

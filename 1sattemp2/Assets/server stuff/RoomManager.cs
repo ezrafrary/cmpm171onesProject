@@ -134,11 +134,18 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
 
     public void EndGame(){
-        KillAllPlayers(); //calls playerDied()
-        roomCam.SetActive(true);
-        youDiedUi.SetActive(false);
-        gameOverUI.SetActive(true);
-        Debug.Log("game ended");
+        try{
+            KillAllPlayers(); //calls playerDied(), errors if player is already dead
+            roomCam.SetActive(true);
+            youDiedUi.SetActive(false);
+            gameOverUI.SetActive(true);
+            Debug.Log("game ended");
+        }catch{
+            roomCam.SetActive(true);
+            youDiedUi.SetActive(false);
+            gameOverUI.SetActive(true);
+            Debug.Log("game ended while player was dead");
+        }
     }
 
 
