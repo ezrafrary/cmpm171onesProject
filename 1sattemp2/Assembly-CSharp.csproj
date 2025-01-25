@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\weaponsnHealth\WeaponSwitcher.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
+    <Compile Include="Assets\PlayerPhotonSoundManager.cs" />
     <Compile Include="Assets\server stuff\RoomItemButton.cs" />
     <Compile Include="Assets\uiandhudScripts\OptionsMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\uiandhudScripts\BackToMenuButton.cs" />
+    <Compile Include="Assets\SendAnimationEventToSFXManager.cs" />
     <Compile Include="Assets\weaponsnHealth\Weapon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\server stuff\RoomList.cs" />

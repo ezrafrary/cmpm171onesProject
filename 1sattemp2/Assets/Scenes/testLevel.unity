@@ -6649,7 +6649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0
   isTimerRunning: 1
-  timerDuration: 20
+  timerDuration: 9999
   roomManager: {fileID: 397285440}
 --- !u!4 &1364681138
 Transform:
@@ -8027,6 +8027,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 687c193a84d0eba4bbed61af49ccef62, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 687c193a84d0eba4bbed61af49ccef62, type: 3}
+      propertyPath: m_WrapMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 687c193a84d0eba4bbed61af49ccef62, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 687c193a84d0eba4bbed61af49ccef62, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

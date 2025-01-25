@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Movement : MonoBehaviour
 {
@@ -39,6 +40,14 @@ public class Movement : MonoBehaviour
 
     private bool grounded = false;
 
+
+    [Header("Animations")]
+    public Animation handAnimation;
+    public AnimationClip handWalkAnimation;
+    public AnimationClip idleAnimation;
+    public PhotonView playerPhotonView;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,21 +74,44 @@ public class Movement : MonoBehaviour
     }
 
 
+    [PunRPC]
+    public void PlayWalkingAnimation(){
+        handAnimation.clip = handWalkAnimation;
+        handAnimation.Play();
+    }
+
+
+    [PunRPC]
+    public void PlayIdleAnimation(){
+        handAnimation.clip = idleAnimation;
+        handAnimation.Play();
+    }
+
     public void setDashCooldownCircle(){
         dashCooldownImage.fillAmount = (float) currentDashCooldown / dashCooldown;
     }
 
     void FixedUpdate(){
+        if(input.magnitude < 0.5f){
+            
+            playerPhotonView.RPC("PlayIdleAnimation",RpcTarget.All);
+        }
+
+        
         if(currentDashCooldown > 0){
             currentDashCooldown--;
         }
         if(currentDashDurationCooldown > 0){
             currentDashDurationCooldown--;
         }
-
+        
         if (grounded){
             if (jumping){
                 rb.velocity = new Vector3(rb.velocity.x, jumpHeight, rb.velocity.z);
+            }else if(input.magnitude > 0.5f){
+                playerPhotonView.RPC("PlayWalkingAnimation",RpcTarget.All);
+            }else{
+                
             }
         }
         rb.AddForce(CalculateMovement(sprinting ? sprintSpeed : walkSpeed), ForceMode.VelocityChange);

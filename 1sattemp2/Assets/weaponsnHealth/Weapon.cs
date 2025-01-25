@@ -43,6 +43,10 @@ public class Weapon : MonoBehaviour
     public Animation animation;
     public AnimationClip reload;
 
+    [Header("SFX")]
+    public int ShootSFXIndex = 0;
+    public PlayerPhotonSoundManager playerPhotonSoundManager;
+
 
     [Header("Recoil Settings")]
     [Range(0,1)]
@@ -154,6 +158,9 @@ public class Weapon : MonoBehaviour
 
 
     void Fire(){
+
+        playerPhotonSoundManager.PlayShootSFX(ShootSFXIndex);
+
         recoiling = true;
         recovering = false;
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
@@ -179,6 +186,7 @@ public class Weapon : MonoBehaviour
     void FireProjectile(){
         recoiling = true;
         recovering = false;
+        playerPhotonSoundManager.PlayShootSFX(ShootSFXIndex);
         if(bulletPrefab){
             spawnBullet();
 

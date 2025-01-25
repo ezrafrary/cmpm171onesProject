@@ -44,6 +44,10 @@ MonoBehaviour:
   - KillPlayer
   - SetTPWeapon
   - SyncTimer
+  - PlayFootstepsSFX_RPC
+  - PlayShootSFX_RPC
+  - PlayWalkingAnimation
+  - PlayIdleAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

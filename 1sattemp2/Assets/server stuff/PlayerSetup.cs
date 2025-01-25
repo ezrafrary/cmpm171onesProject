@@ -13,7 +13,7 @@ public class PlayerSetup : MonoBehaviour
     public Camera cameraObj; //this is so we can set camerafov without having to jank it
 
     public string nickname;
-    
+    public GameObject playerModel;
 
 
     public TextMeshPro nicknameText;
@@ -51,6 +51,7 @@ public class PlayerSetup : MonoBehaviour
 
         movement.enabled = true;
         camera.SetActive(true);
+        playerModel.GetComponent<SkinnedMeshRenderer>().enabled = false;
     }
 
     [PunRPC]

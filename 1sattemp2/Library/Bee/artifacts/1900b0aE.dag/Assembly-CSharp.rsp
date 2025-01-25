@@ -381,6 +381,8 @@
 "Assets/Photon/PhotonChat/Demos/DemoChat/IgnoreUiRaycastWhenInactive.cs"
 "Assets/Photon/PhotonChat/Demos/DemoChat/NamePickGui.cs"
 "Assets/Photon/PhotonRealtime/Demos/DemoLoadBalancing/ConnectAndJoinRandomLb.cs"
+"Assets/PlayerPhotonSoundManager.cs"
+"Assets/SendAnimationEventToSFXManager.cs"
 "Assets/server stuff/Leaderboard.cs"
 "Assets/server stuff/PhotonTimer.cs"
 "Assets/server stuff/PlayerSetup.cs"
