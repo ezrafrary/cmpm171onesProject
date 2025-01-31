@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 7950140257926317427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.44, y: 1.857, z: 1.36}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,9 +102,9 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -125,8 +125,10 @@ MonoBehaviour:
   damage: 10
   explosiveDamage: 0
   explosiveRadius: 0
+  scoreGainedForKill: 10
   ignoreHitbox: {fileID: 0}
   hitVFX: {fileID: 8890763803698331194, guid: cc3cf0eaf0b3a6947ad00ad4cb6c610e, type: 3}
+  timeUntilBulletIsVisible: 3
 --- !u!54 &8715271385869556481
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,7 +155,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &871224389861220025
 MonoBehaviour:
   m_ObjectHideFlags: 0

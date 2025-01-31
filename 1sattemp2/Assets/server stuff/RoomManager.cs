@@ -94,6 +94,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         nameUI.SetActive(false);
         connectingUI.SetActive(true);
+    
         
     }
 

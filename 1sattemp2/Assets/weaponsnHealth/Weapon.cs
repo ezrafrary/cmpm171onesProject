@@ -63,6 +63,7 @@ public class Weapon : MonoBehaviour
     public float bulletSpeed = 4f;
     public GameObject playerObjForIgnoreHitbox;
 
+
     [HideInInspector]
     public bool preventFire = false;
 
@@ -130,6 +131,12 @@ public class Weapon : MonoBehaviour
         if (recovering){
             Recovering();
         }
+    }
+
+    
+    public void refillMags(int numMags){
+        mag = mag + numMags;
+        SetGunText();
     }
 
     public void SetGunText(){

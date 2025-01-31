@@ -19,12 +19,18 @@ public class PlayerSetup : MonoBehaviour
     public TextMeshPro nicknameText;
     
     public Transform TPweaponHolder;
-    
+    public WeaponSwitcher weaponSwitcher;
 
     int defaultFov = 60;
 
     void Start(){
         SetCameraFov(PlayerPrefs.GetInt("FOV", defaultFov));
+    }
+
+
+    [PunRPC]
+    public void refillCurrentWeapon(int _numMags){
+        weaponSwitcher.refillSelectedWeapon(_numMags);
     }
 
     [PunRPC]

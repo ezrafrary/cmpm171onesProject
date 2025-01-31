@@ -65,6 +65,17 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
+
+    public void refillSelectedWeapon(int _numMags){ 
+        int i = 0;
+        foreach(Transform _weapon in transform){
+            if(i == selectedWeapon){
+                _weapon.gameObject.GetComponent<Weapon>().refillMags(_numMags);
+            }
+            i++;
+        }
+    }
+
     public void preventFire(){
         int i = 0;
         foreach(Transform _weapon in transform){

@@ -12,6 +12,8 @@ public class Health : MonoBehaviour
 {
     public int health;
     public bool IsLocalPlayer;
+    public int maxHealth;
+
 
     [Header("UI")]
     public TextMeshProUGUI healthText;
@@ -29,6 +31,7 @@ public class Health : MonoBehaviour
 
     private void Start(){
         originalHealthBarSize = healthBar.sizeDelta.x;
+        maxHealth = health;
     }
 
 
@@ -52,6 +55,16 @@ public class Health : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
+
+    [PunRPC]
+    public void Heal(int _heal){
+        health += _heal;
+        if(health > maxHealth){
+            health = maxHealth;
+        }
+        healthBar.sizeDelta = new Vector2(originalHealthBarSize * health / 100f, healthBar.sizeDelta.y);
+        healthText.text = health.ToString();
     }
 
     
