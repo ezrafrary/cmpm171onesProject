@@ -396,6 +396,7 @@
 "Assets/server stuff/timerScript.cs"
 "Assets/sound/PlayerPhotonSoundManager.cs"
 "Assets/sound/SendAnimationEventToSFXManager.cs"
+"Assets/TeKniKo_Free/Power_Ups/Scripts/ObjectBounce.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
